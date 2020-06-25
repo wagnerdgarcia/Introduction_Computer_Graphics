@@ -4,11 +4,35 @@
 #include "core.h"
 #include "frame_buffer.h"
 
-// Declaração da função que chamará as funções implementadas pelo aluno
+/*Struct que define a Cor*/
+typedef struct color
+{
+  int c[4];
+}color;
+
+/*Struct que define o Ponto*/
+typedef struct point
+{
+  int x, y;
+  color *cor;
+}point;
+
+/*Struct que define a Linha*/
+typedef struct line
+{
+  point pontos[2];
+}line;
+
+/*Struct que define o Triangulo*/
+typedef struct triangle
+{
+  point pontos[3];
+}triangle;
+
 void MyGlDraw(void);
 
-//
-// >>> Declare aqui as funções que você implementar <<<
-//
+void putPixel(point*);
+void drawLine(point*);
+void drawTriangle(point*);
 
 #endif  // MYGL_H
