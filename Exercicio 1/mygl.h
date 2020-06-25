@@ -14,7 +14,7 @@ typedef struct color
 typedef struct point
 {
   int x, y;
-  color *cor;
+  color cor;
 }point;
 
 /*Struct que define a Linha*/
@@ -31,8 +31,8 @@ typedef struct triangle
 
 void MyGlDraw(void);
 
-void putPixel(point*);
-void drawLine(point*);
-void drawTriangle(point*);
+void putPixel(point);
+void drawLine(line);
+void drawTriangle(triangle);
 
 #endif  // MYGL_H
