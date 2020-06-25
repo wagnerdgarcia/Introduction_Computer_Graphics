@@ -1,0 +1,14 @@
+Desenvolver: 
+- Color (r, g, b, a);                   - Ok
+- Point (x, y, Color);                  - OK
+- line (PointI, pointF);                - OK
+- Triangle (Point1, point2, point3);    - OK
+
+- PutPixel (Point);                     - OK
+
+- DrawLine (line);
+	- Bresenhan
+
+- DrawTriangle (triangle);
+	- Fazer interpolação Linear
+	- Não nescessario preencher o Triangulo

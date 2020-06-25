@@ -34,5 +34,6 @@ void MyGlDraw(void);
 void putPixel(point);
 void drawLine(line);
 void drawTriangle(triangle);
+void bresenham(point , point );
 
 #endif  // MYGL_H
