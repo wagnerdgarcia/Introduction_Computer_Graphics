@@ -7,23 +7,27 @@ void MyGlDraw(void) {
 
   p1.x = 100;
   p1.y = 100;
-  p1.cor.c[0] = 255; // R
-  p1.cor.c[1] = 255; // G
+  p1.cor.c[0] = 0; // R
+  p1.cor.c[1] = 0; // G
   p1.cor.c[2] = 255; // B
   p1.cor.c[3] = 255; // A
   
-  p2.x = 200;
+  //p2.x = 200;
+  //p2.y = 400;
+  p2.x = 100;
   p2.y = 400;
-  p2.cor.c[0] = 255; // R
+  p2.cor.c[0] = 0; // R
   p2.cor.c[1] = 255; // G
-  p2.cor.c[2] = 255; // B
+  p2.cor.c[2] = 0; // B
   p2.cor.c[3] = 255; // A
   
-  p3.x = 409;
-  p3.y = 163;
+  //p3.x = 409;
+  //p3.y = 163;
+  p3.x = 400;
+  p3.y = 100;
   p3.cor.c[0] = 255; // R
-  p3.cor.c[1] = 255; // G
-  p3.cor.c[2] = 255; // B
+  p3.cor.c[1] = 0; // G
+  p3.cor.c[2] = 0; // B
   p3.cor.c[3] = 255; // A
   
   triangulo.pontos[0] = p1;
@@ -70,8 +74,8 @@ void drawTriangle(triangle trinagulo){
   linha1.pontos[1] = trinagulo.pontos[1];
   linha2.pontos[0] = trinagulo.pontos[1];
   linha2.pontos[1] = trinagulo.pontos[2];
-  linha3.pontos[0] = trinagulo.pontos[2];
-  linha3.pontos[1] = trinagulo.pontos[0];
+  linha3.pontos[0] = trinagulo.pontos[0];
+  linha3.pontos[1] = trinagulo.pontos[2];
   
   drawLine(linha1);
   drawLine(linha2);
@@ -90,16 +94,24 @@ void bresenham(point p1, point p2){
   if (!dy)
   {
     if (p1.x < p2.x){
+      x = p1.x;
+      y = p1.y;
       desenho = p1;
-      for (int i = p1.x; i < p2.x; i++){
-        desenho.x += i;
+      while(x < p2.x){
+        x++;
+        desenho.x = x;
+        desenho.y = y;
         putPixel(desenho);
       }
     }
     if (p1.x > p2.x){
+      x = p1.x;
+      y = p1.y;
       desenho = p2;
-      for (int i = p2.x; i < p1.x; i++){
-        desenho.x += i;
+      while(x < p1.x){
+        x++;
+        desenho.x = x;
+        desenho.y = y;
         putPixel(desenho);
       }
     }
@@ -107,16 +119,24 @@ void bresenham(point p1, point p2){
   else if (!dx)
   {
     if (p1.y < p2.y){
+      x = p1.x;
+      y = p1.y;
       desenho = p1;
-      for (int i = p1.y; i < p2.y; i++){
-        desenho.y += i;
+      while(y < p2.y){
+        y++;
+        desenho.x = x;
+        desenho.y = y;
         putPixel(desenho);
       }
     }
     if (p1.y > p2.y){
+      x = p1.x;
+      y = p1.y;
       desenho = p2;
-      for (int i = p2.y; i < p1.y; i++){
-        desenho.y += i;
+      while(y < p1.y){
+        y++;
+        desenho.x = x;
+        desenho.y = y;
         putPixel(desenho);
       }
     }
