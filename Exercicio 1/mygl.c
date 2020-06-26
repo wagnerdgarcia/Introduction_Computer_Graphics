@@ -2,29 +2,35 @@
 
 /* Definição das primitivas a serem desenhadas */
 void MyGlDraw(void) {
-  point p1, p2;
-  line linha;
+  point p1, p2, p3;
+  triangle triangulo;
 
-  p1.x = 200;
-  p1.y = 400;
+  p1.x = 100;
+  p1.y = 100;
   p1.cor.c[0] = 255; // R
   p1.cor.c[1] = 255; // G
   p1.cor.c[2] = 255; // B
   p1.cor.c[3] = 255; // A
-  putPixel(p1);
-
-  p2.x = 100;
-  p2.y = 100;
+  
+  p2.x = 200;
+  p2.y = 400;
   p2.cor.c[0] = 255; // R
   p2.cor.c[1] = 255; // G
   p2.cor.c[2] = 255; // B
   p2.cor.c[3] = 255; // A
-  putPixel(p2);
+  
+  p3.x = 400;
+  p3.y = 250;
+  p3.cor.c[0] = 255; // R
+  p3.cor.c[1] = 255; // G
+  p3.cor.c[2] = 255; // B
+  p3.cor.c[3] = 255; // A
+  
+  triangulo.pontos[0] = p1;
+  triangulo.pontos[1] = p2;
+  triangulo.pontos[2] = p3;
 
-  linha.pontos[0] = p1;
-  linha.pontos[1] = p2;
-
-  drawLine(linha);
+  drawTriangle(triangulo);
 }
 
 /* Plotando ponto na tela 
@@ -44,12 +50,32 @@ void putPixel(point ponto){
 
 /* Plotando a linha na tela 
  * 
- * Parametro:
+ * Parametro: Passa a linha a ser desenhada
  * 
- * Return:
+ * Return: Desenha a linha
 */
 void drawLine(line linha){
   bresenham(linha.pontos[0], linha.pontos[1]);
+}
+
+/* Plotando a linha na tela 
+ * 
+ * Parametro: Passa o triangulo a ser desenhado
+ * 
+ * Return: Desenha o triangulo
+*/
+void drawTriangle(triangle trinagulo){
+  line linha1, linha2, linha3;
+  linha1.pontos[0] = trinagulo.pontos[0];
+  linha1.pontos[1] = trinagulo.pontos[1];
+  linha2.pontos[0] = trinagulo.pontos[1];
+  linha2.pontos[1] = trinagulo.pontos[2];
+  linha3.pontos[0] = trinagulo.pontos[2];
+  linha3.pontos[1] = trinagulo.pontos[0];
+  
+  drawLine(linha1);
+  drawLine(linha2);
+  drawLine(linha3);
 }
 
 void bresenham(point p1, point p2){
@@ -61,8 +87,41 @@ void bresenham(point p1, point p2){
   dy = p2.y - p1.y;
   if(dy < 0) dy = -dy;
 
-  
-  if(dx >= dy){
+  if (!dy)
+  {
+    if (p1.x < p2.x){
+      desenho = p1;
+      for (int i = p1.x; i < p2.x; i++){
+        desenho.x += i;
+        putPixel(desenho);
+      }
+    }
+    if (p1.x > p2.x){
+      desenho = p2;
+      for (int i = p2.x; i < p1.x; i++){
+        desenho.x += i;
+        putPixel(desenho);
+      }
+    }
+  }
+  else if (!dx)
+  {
+    if (p1.y < p2.y){
+      desenho = p1;
+      for (int i = p1.y; i < p2.y; i++){
+        desenho.y += i;
+        putPixel(desenho);
+      }
+    }
+    if (p1.y > p2.y){
+      desenho = p2;
+      for (int i = p2.y; i < p1.y; i++){
+        desenho.y += i;
+        putPixel(desenho);
+      }
+    }
+  }
+  else if(dx >= dy){
     p = 2 * dy - dx;
     e = 2 * dy;
     xy2 = 2 * (dy-dx);
@@ -84,7 +143,8 @@ void bresenham(point p1, point p2){
         putPixel(desenho);
       }
     }
-    if((p1.x < p2.x) && (p1.y > p2.y)){
+    
+    else if((p1.x < p2.x) && (p1.y > p2.y)){
       x = p1.x;
       y = p1.y;
       desenho = p1;
