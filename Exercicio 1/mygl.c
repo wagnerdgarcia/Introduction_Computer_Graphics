@@ -19,8 +19,8 @@ void MyGlDraw(void) {
   p2.cor.c[2] = 255; // B
   p2.cor.c[3] = 255; // A
   
-  p3.x = 400;
-  p3.y = 250;
+  p3.x = 409;
+  p3.y = 163;
   p3.cor.c[0] = 255; // R
   p3.cor.c[1] = 255; // G
   p3.cor.c[2] = 255; // B
