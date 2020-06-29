@@ -78,7 +78,7 @@ void InitDataStructures(void) {
     fb_ptr = (unsigned char *)malloc(IMAGE_WIDTH * IMAGE_HEIGHT * 4 * sizeof(char));
 
     for (int i = 0; i < IMAGE_WIDTH * IMAGE_HEIGHT; ++i) {
-        fb_ptr[i * 4] = 0;
+        fb_ptr[i * 4 + 0] = 0;
         fb_ptr[i * 4 + 1] = 0;
         fb_ptr[i * 4 + 2] = 0;
         fb_ptr[i * 4 + 3] = 255;
