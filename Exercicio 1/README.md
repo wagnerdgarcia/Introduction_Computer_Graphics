@@ -132,7 +132,20 @@ A função `drawTriangle()` irá desenhar triangulos na tela sem preenchimento, 
 
 Para isso utilizaremos a função `drawLine()`, de forma que iremos criar uma linha para cada aresta que interliga-rá os vertices do triângulo. Então a primeira linha interliga-rá os vertices 0 e o 1, a segunda os vertices 0 e 2, a terceira os vertices 1 e 2. com as linhas desenhadas utilizamos a função `drawLine()` para desenha-las na tela.
 
-![](Imagens/Triangulo - Interpolado.png
+![](Imagens/Triangulo.png)
 
-![](Imagens/Triangulo - Interpolado - 2.png)
+![](Imagens/Triangulo2.png)
 
+### Conclusão
+
+Concluimos que o trabalho foi valioso, pois foram desenvolvidas habilidades de computação grafica iniciais, conhecimento sobre como funciona a memoria de video de um computador e algoritmos de rasterização como o de Bresenham. Com isso teremos uma base para criar varios outros projetos em C com o OpenGL e assim desenvolver mais ainda nossas Habilidades.
+
+### Referencias
+
+AZEVEDO, E; CONCI, A. REALISMO VISUAL E ILUMINAÇÃO: Rasterização. In: TEORIA DA COMPUTAÇÃO GRÁFICA. Rio de Janeiro: Campos, 2003. cap. 7, p. 258-261.
+
+INTERPOLAÇÃO de cores e Triângulos. [S. l.], Agosto 2016. Disponível em: [fleig]: http://fleigfleig.blogspot.com/2016/08/interpolacao-de-cores-e-triangulos.html. Acesso em: 26 jun. 2020.
+
+LOPES, João Manuel Brisson. Rasterização. Universidade Técnica de Lisboa, Lisboa - Portugal, p. 1 - 11, 1 ago. 2004. Disponível em: http://disciplinas.ist.utl.pt/leic-cg/textos/livro/Rasterizacao.pdf. Acesso em: 25 jun. 2020.
+
+![](Imagens/Junção.png)
