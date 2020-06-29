@@ -131,6 +131,8 @@ Tendo essa diferença em mão quando formos plotar o ponto auxiliar no algoritmo
 A função `drawTriangle()` irá desenhar triangulos na tela sem preenchimento, utilizando a função `drawLine()` será desenhado as três arestas do triângulo, conectadas aos vertices. Recebemos como parametro um `triangle`, e o retorno é plotar na tela todos os pontos corespondentes as arestas do triangulo.
 
 Para isso utilizaremos a função `drawLine()`, de forma que iremos criar uma linha para cada aresta que interliga-rá os vertices do triângulo. Então a primeira linha interliga-rá os vertices 0 e o 1, a segunda os vertices 0 e 2, a terceira os vertices 1 e 2. com as linhas desenhadas utilizamos a função `drawLine()` para desenha-las na tela.
-![](Imagens/triangulo - interpolado.png)
+
+![](Imagens/Triangulo - Interpolado.png
+
 ![](Imagens/Triangulo - Interpolado - 2.png)
 
