@@ -16,20 +16,20 @@ A ideia desse projeto é introduzir os alunos aos conceitos de introdução a co
 
 ### Desenvolvimento
 
-  O projeto foi dividido em três partes importantes, sendo elas o desenvolvimentos das principais funções, putPixel(), DrawLine() e DrawTriangle(); para isso foram criados duas estruturas para auxiliar no desenvolvimento do programa e assim ficar mais facil e pratico o desenvolvimento sendo elas a color e a point.
+  O projeto foi dividido em três partes importantes, sendo elas o desenvolvimentos das principais funções, putPixel(), DrawLine() e DrawTriangle(); para isso foram criados duas estruturas para auxiliar no desenvolvimento do programa e assim ficar mais facil e pratico o desenvolvimento sendo elas a color, a point, a line e a triangle.
 
 #### Estruturas
 
-###### Color
+##### Color
 
-  A color tinha a função de agrupar os elementos de uma cor em um vetor de 4 unidades, `color[4]`, onde o primeiro elemento do vetor[0] seria resevado para a cor vermelha (Red), o Segundo elemento do vetor[1] a cor verde (Green), o terceiro elemento do vetor[2] a cor azul (Blue), e por fim no ultimo elemento do vetor[3] será armazenado o valor da cor alfa.
+  A color tem a função de agrupar os elementos de uma cor em um vetor de 4 elementos de ponto flutuante, `color[4]`, onde o primeiro elemento do vetor[0] seria resevado para a cor vermelha (Red), o Segundo elemento do vetor[1] a cor verde (Green), o terceiro elemento do vetor[2] a cor azul (Blue), e por fim no ultimo elemento do vetor[3] será armazenado o valor da cor alfa. É nescessário ser ponto flutuante pois se não for não tem como calcular a interpolação entre as cores.
 
   ``` 
   color.c = {R,G,B,A}
   ```
 
   
-###### Point
+##### Point
 
   A estrutura point ele irá armazenar dois valores inteiros para guardar a posição do ponto no espaço, um deles irá armazenar o valor da posição X e o outro da posição Y, além disso teremos uma estrutura color dentro dela que irá armazenar a cor do ponto.
 
@@ -38,6 +38,23 @@ x = inteiro
 y = inteito
 cor = color
 ```
+
+##### line
+
+Com a estrutura line armazenamos os pontos iniciais e finais de uma linha, utilizando um vetor de `point` de dois elementos armazenamos os pontos da linha o primeiro o inicial e o segundo o final.
+
+```
+Pontos[2] = {Ponto Inicial, Ponto Final}
+```
+
+##### triangle
+
+Na estrutura triangle armazenamos os vertices de um triangulo similar a estrutura line, a diferença é que na estrutura triangle armazenamos um vetor de `point` de três posições, assim guardando todos os vertices do triangulo a ser utilizado.
+
+```
+Triangulo[3] = {Vertice 1, Vertice 2, Vertice 3}
+```
+
 #### Funções 
 
 ##### putPixel()
@@ -53,10 +70,43 @@ posição G = 4 * PosiçãoX + 4 * LarguraDaTela * PosiçãoY + 1
 posição B = 4 * PosiçãoX + 4 * LarguraDaTela * PosiçãoY + 2
 posição A = 4 * PosiçãoX + 4 * LarguraDaTela * PosiçãoY + 3
 ```
-Assim que encontramos as posições de cada cor para aquele ponto armazenamos na memoria o valor correspondente a cada cor, para assim que o programa for execultado ele possa desenhar na tela a cor correspondente a cada pixel.
+Assim que encontramos as posições de cada cor para aquele ponto armazenamos na memoria o valor correspondente a cada cor, como a cor armazenada está na forma de ponto flutuante prescisamos transforma-lá em ponto inteiro para que possa ser armazenada de forma correta na memoria, para assim que o programa for execultado ele possa desenhar na tela a cor correspondente a cada pixel.
 
 ![](Imagens/Pontos.png)
 
 ##### drawLine()
 
-Na função de de
+Na função drawLine tem a finalidade de desenhar retas na tela utilizando a função `putPixel()` para realizar essa tarefa ela irá execultar o algoritmo de Bresenham dos pontos medios para calcular os pixels a serem desenhados. Essa é a principal função do projeto, pois ela que irá calcular todas as linhas a serem desenhada. Para isso ela recebe como parametro `line` que será a linha a ser plotada na tela e irá plotar na tela todos os pontos dessa linha e sua respectiva cor. Para isso ela irá utilizar além do algoritmo de Bresenham um algoritmo para calcular as cores desses pontos a serem plotados e assim fazer a interpolação se for nescessário. 
+
+###### Algoritmo de Bresenham
+
+O algoritmo de bresenham consistem em calcular os pontos de uma reta com base no ponto medio entre dois pixels e por onde a reta passa, se abaixo dele ou acima dele. Desse modo consiguimos plotar todos os pontos da reta e assim plota-la por completo. 
+
+Primeiro temos que calcular as diferenças entre os pontos, a diferença no eixo X e a diferença no eixo Y. 
+
+```
+Dx = PontoFinal.x - Ponto Inicial.x
+Dy = PontoFinal.y - Ponto Inicial.y
+```
+
+Tendo a diferença em maõs podemos calcular o incremento ponto medio para o proximo ponto, e os incrementos a leste, `x++`, e a nordeste,`x++ e y++`. Os valores irão depender se a reta tem uma crescente maior em x,Dx > Dy, ou uma crescente maior em y, Dy > Dx.
+
+Para a crescente em x temos que:
+
+```
+Ponto Médio = 2 * Dy - Dx
+Incremento a leste = 2 * Dy
+Incremento a Nordeste = 2 * (Dy - Dx)
+```
+
+Para a Crescente em Y temos que:
+
+```
+Ponto Médio = 2 * Dx - Dy
+Incremento a leste = 2 * Dx
+Incremento a Nordeste = 2 * (Dx - Dy)
+```
+
+Com esses calculos em mãos iremos armazenar o valor do primeiro ponto a ser desenhado em um `point` auxiliar chamado desenho e plotar ele na tela. Apartir de agora iremos inicializar um loop onde irá calcular todos os pontos da reta até chegar no ponto final no eixo com maior crescente. A principel iremos incrementar a variavel que está em crescente, iremos verificar se o valor do ponto medio é menor que 0, se for iremos incrementa-lo a leste, se não for iremos incrementar a variavel que não ta em crescente e o ponto medio para nordeste. Por fim iremos atualizar a posição do ponto auxiliar e plota-lo na tela.
+
+###### Algoritmo de Interpolação
