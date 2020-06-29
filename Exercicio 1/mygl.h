@@ -7,7 +7,7 @@
 /*Struct que define a Cor*/
 typedef struct color
 {
-  int c[4];
+  float c[4];
 }color;
 
 /*Struct que define o Ponto*/

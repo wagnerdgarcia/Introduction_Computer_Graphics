@@ -12,8 +12,6 @@ void MyGlDraw(void) {
   p1.cor.c[2] = 255; // B
   p1.cor.c[3] = 255; // A
   
-  //p2.x = 200;
-  //p2.y = 400;
   p2.x = 100;
   p2.y = 400;
   p2.cor.c[0] = 0; // R
@@ -21,20 +19,13 @@ void MyGlDraw(void) {
   p2.cor.c[2] = 0; // B
   p2.cor.c[3] = 255; // A
   
-  //p3.x = 409;
-  //p3.y = 163;
   p3.x = 400;
   p3.y = 100;
   p3.cor.c[0] = 255; // R
   p3.cor.c[1] = 0; // G
   p3.cor.c[2] = 0; // B
   p3.cor.c[3] = 255; // A
-  
-  triangulo.pontos[0] = p1;
-  triangulo.pontos[1] = p2;
-  triangulo.pontos[2] = p3;
 
-  drawTriangle(triangulo);
 }
 
 /* Plotando ponto na tela 
@@ -47,8 +38,7 @@ void putPixel(point ponto){
   int posicao = 4 * (ponto.x) + 4 * (ponto.y) * IMAGE_HEIGHT; // Calcula a posição do buffer de cor
   for (int i = 0; i < 4; i++)
   {
-    fb_ptr[posicao + i] = ponto.cor.c[i];
-    ;
+    fb_ptr[posicao + i] = (int)(ponto.cor.c[i]);
   }
 }
 
@@ -85,14 +75,27 @@ void drawTriangle(triangle trinagulo){
 void bresenham(point p1, point p2){
   point desenho;
   int dx, dy, p, e, xy2, x, y; 
+  float dr, dg, db, da;
   
   dx = p2.x - p1.x;
   if(dx < 0) dx = -dx;
   dy = p2.y - p1.y;
   if(dy < 0) dy = -dy;
+  if (dx > dy){
+    dr =  (p2.cor.c[0] - p1.cor.c[0])/(float)dx;
+    dg =  (p2.cor.c[1] - p1.cor.c[1])/(float)dx;
+    db =  (p2.cor.c[2] - p1.cor.c[2])/(float)dx;
+    da =  (p2.cor.c[3] - p1.cor.c[3])/(float)dx;
+  }
+  else{
+    dr =  (p2.cor.c[0] - p1.cor.c[0])/(float)dy;
+    dg =  (p2.cor.c[1] - p1.cor.c[1])/(float)dy;
+    db =  (p2.cor.c[2] - p1.cor.c[2])/(float)dy;
+    da =  (p2.cor.c[3] - p1.cor.c[3])/(float)dy;
+  }
 
-  if (!dy)
-  {
+  if (!dy){  
+    
     if (p1.x < p2.x){
       x = p1.x;
       y = p1.y;
@@ -101,6 +104,10 @@ void bresenham(point p1, point p2){
         x++;
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -112,12 +119,15 @@ void bresenham(point p1, point p2){
         x++;
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
   }
-  else if (!dx)
-  {
+  else if (!dx){    
     if (p1.y < p2.y){
       x = p1.x;
       y = p1.y;
@@ -126,6 +136,10 @@ void bresenham(point p1, point p2){
         y++;
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -137,6 +151,10 @@ void bresenham(point p1, point p2){
         y++;
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -160,6 +178,10 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -179,6 +201,10 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -197,27 +223,35 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
     if((p1.x > p2.x) && (p1.y > p2.y)){
-    x = p2.x;
-    y = p2.y;
-    desenho = p2;
-    putPixel(desenho);
-
-    while(x < p1.x){
-      x++;
-      if(p<0) p +=e;
-      else{
-        y++;
-        p += xy2;
-      }
-      desenho.x = x;
-      desenho.y = y;
+      x = p2.x;
+      y = p2.y;
+      desenho = p2;
       putPixel(desenho);
+
+      while(x < p1.x){
+        x++;
+        if(p<0) p +=e;
+        else{
+          y++;
+          p += xy2;
+        }
+        desenho.x = x;
+        desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
+        putPixel(desenho);
+      }
     }
-  }
   }
   else{
     p = 2 * dx - dy;
@@ -238,6 +272,10 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -256,6 +294,10 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
@@ -274,27 +316,34 @@ void bresenham(point p1, point p2){
         }
         desenho.x = x;
         desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
         putPixel(desenho);
       }
     }
     if((p1.x > p2.x) && (p1.y > p2.y)){
-    x = p2.x;
-    y = p2.y;
-    desenho = p2;
-    putPixel(desenho);
-
-    while(y < p1.y){
-      y++;
-      if(p<0) p +=e;
-      else{
-        x++;
-        p += xy2;
-      }
-      desenho.x = x;
-      desenho.y = y;
+      x = p2.x;
+      y = p2.y;
+      desenho = p2;
       putPixel(desenho);
-    }
-  } 
-  }
 
+      while(y < p1.y){
+        y++;
+        if(p<0) p +=e;
+        else{
+          x++;
+          p += xy2;
+        }
+        desenho.x = x;
+        desenho.y = y;
+        desenho.cor.c[0] += dr;
+        desenho.cor.c[1] += dg;
+        desenho.cor.c[2] += db;
+        desenho.cor.c[3] += da;
+        putPixel(desenho);
+      }
+    } 
+  }
 }
