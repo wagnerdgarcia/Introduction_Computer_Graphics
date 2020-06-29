@@ -49,7 +49,7 @@ posição A = 4 * PosiçãoX + 4 * LarguraDaTela * PosiçãoY + 3
 ```
 Assim que encontramos as posições de cada cor para aquele ponto armazenamos na memoria o valor correspondente a cada cor, para assim que o programa for execultado ele possa desenhar na tela a cor correspondente a cada pixel.
 
-![screenshot](Imagens/Pontos.png)
+![](Imagens/Pontos.png?w=512)
 
 ### drawLine()
 
