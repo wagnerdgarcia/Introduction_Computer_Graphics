@@ -19,9 +19,9 @@ A ideia desse projeto é introduzir os alunos aos conceitos de introdução a co
 
   A color tinha a função de agrupar os elementos de uma cor em um vetor de 4 unidades, 'color[4]', onde o primeiro elemento do vetor[0] seria resevado para a cor vermelha (Red), o Segundo elemento do vetor[1] a cor verde (Green), o terceiro elemento do vetor[2] a cor azul (Blue), e por fim no ultimo elemento do vetor[3] será armazenado o valor da cor alfa.
 
-  ''' 
+  ``` 
   color.c = {R,G,B,A}
-  '''
+  ```
 
   
 ### Point
