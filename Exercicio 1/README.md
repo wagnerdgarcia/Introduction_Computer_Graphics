@@ -39,7 +39,7 @@ y = inteito
 cor = color
 ```
 
-##### line
+##### Line
 
 Com a estrutura line armazenamos os pontos iniciais e finais de uma linha, utilizando um vetor de `point` de dois elementos armazenamos os pontos da linha o primeiro o inicial e o segundo o final.
 
@@ -47,7 +47,7 @@ Com a estrutura line armazenamos os pontos iniciais e finais de uma linha, utili
 Pontos[2] = {Ponto Inicial, Ponto Final}
 ```
 
-##### triangle
+##### Triangle
 
 Na estrutura triangle armazenamos os vertices de um triangulo similar a estrutura line, a diferença é que na estrutura triangle armazenamos um vetor de `point` de três posições, assim guardando todos os vertices do triangulo a ser utilizado.
 
@@ -59,7 +59,7 @@ Triangulo[3] = {Vertice 1, Vertice 2, Vertice 3}
 
 ##### putPixel()
 
-Foi desenvolvido uma função chamada putPixel() onde sua principal função era desenhar pontos na tela. onde ela irá receber como parametros um `point`e a saida seria desenhar na tela um ponto naquela cordenada e cor.
+Foi desenvolvido uma função chamada `putPixel()` onde sua principal função era desenhar pontos na tela. onde ela irá receber como parametros um `point`e a saida seria desenhar na tela um ponto naquela cordenada e cor.
 
 Sabemos que na memoria a informação de um pixel é armazenada em 4 bytes, onde o primeiro é destinado a cor vermelha, o segundo a cor verde, o terceiro a cor azul e o ultimo ao alfa. Temos que um pixel é seguido do outro na memoria assim eles são armazenados sequencialmente.
 
@@ -76,7 +76,7 @@ Assim que encontramos as posições de cada cor para aquele ponto armazenamos na
 
 ##### drawLine()
 
-Na função drawLine tem a finalidade de desenhar retas na tela utilizando a função `putPixel()` para realizar essa tarefa ela irá execultar o algoritmo de Bresenham dos pontos medios para calcular os pixels a serem desenhados. Essa é a principal função do projeto, pois ela que irá calcular todas as linhas a serem desenhada. Para isso ela recebe como parametro `line` que será a linha a ser plotada na tela e irá plotar na tela todos os pontos dessa linha e sua respectiva cor. Para isso ela irá utilizar além do algoritmo de Bresenham um algoritmo para calcular as cores desses pontos a serem plotados e assim fazer a interpolação se for nescessário. 
+Na função `drawLine()` tem a finalidade de desenhar retas na tela utilizando a função `putPixel()` para realizar essa tarefa ela irá execultar o algoritmo de Bresenham dos pontos medios para calcular os pixels a serem desenhados. Essa é a principal função do projeto, pois ela que irá calcular todas as linhas a serem desenhada. Para isso ela recebe como parametro `line` que será a linha a ser plotada na tela e irá plotar na tela todos os pontos dessa linha e sua respectiva cor. Para isso ela irá utilizar além do algoritmo de Bresenham um algoritmo para calcular as cores desses pontos a serem plotados e assim fazer a interpolação se for nescessário. 
 
 ###### Algoritmo de Bresenham
 
@@ -110,3 +110,27 @@ Incremento a Nordeste = 2 * (Dx - Dy)
 Com esses calculos em mãos iremos armazenar o valor do primeiro ponto a ser desenhado em um `point` auxiliar chamado desenho e plotar ele na tela. Apartir de agora iremos inicializar um loop onde irá calcular todos os pontos da reta até chegar no ponto final no eixo com maior crescente. A principel iremos incrementar a variavel que está em crescente, iremos verificar se o valor do ponto medio é menor que 0, se for iremos incrementa-lo a leste, se não for iremos incrementar a variavel que não ta em crescente e o ponto medio para nordeste. Por fim iremos atualizar a posição do ponto auxiliar e plota-lo na tela.
 
 ###### Algoritmo de Interpolação
+
+No algoritmo de interpolação iremos calcular a diferença entre os canais de cores para saber qual é a variança que cada cor prescisa receber para fazer a interpolação entre uma e outra, calculamos esse valor pegando o valor do canal escolhido do ponto final e subritaindo ele pelo valor do mesmo canal escolhido do ponto inicial e dividindo pela crescente de eixo maior.
+
+Os canais de cores são o Red(Vermelho), Green(Verde), Blue(Azul) e Alfa.
+
+``` 
+diferençaCanalR = (Ponto Final Canal R - Ponto Inicial CanalR) / Dx ou Dy
+diferençaCanalG = (Ponto Final Canal G - Ponto Inicial CanalG) / Dx ou Dy
+diferençaCanalB = (Ponto Final Canal B - Ponto Inicial CanalB) / Dx ou Dy
+diferençaCanalA = (Ponto Final Canal A - Ponto Inicial CanalA) / Dx ou Dy
+```
+
+Tendo essa diferença em mão quando formos plotar o ponto auxiliar no algoritmo de Bresenham iremos somar dentro do ciclo a esse auxiliar as diferenças de canais para assim conseguir fazer a interpolação de forma correta.
+
+![](Imagens/Linhas.png)
+
+##### drawTriangle()
+
+A função `drawTriangle()` irá desenhar triangulos na tela sem preenchimento, utilizando a função `drawLine()` será desenhado as três arestas do triângulo, conectadas aos vertices. Recebemos como parametro um `triangle`, e o retorno é plotar na tela todos os pontos corespondentes as arestas do triangulo.
+
+Para isso utilizaremos a função `drawLine()`, de forma que iremos criar uma linha para cada aresta que interliga-rá os vertices do triângulo. Então a primeira linha interliga-rá os vertices 0 e o 1, a segunda os vertices 0 e 2, a terceira os vertices 1 e 2. com as linhas desenhadas utilizamos a função `drawLine()` para desenha-las na tela.
+![](Imagens/triangulo-interpolado.png)
+![](Imagens/triangulo-interpolado-2.png)
+
