@@ -1,6 +1,6 @@
 # Exercicio 1 - Introdução a Computação Grafica (ICG)
 
-## Respositorio do primeiro Exercício de ICG
+## Respositorio dos Exercícios de ICG
 
 ### Centro de Informatica - Universidade Federal da Paraiba
 

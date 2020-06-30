@@ -3,6 +3,8 @@
  * em 
  *     https://learnopengl.com/Getting-started/Hello-Triangle
  * 
+ *     export MESA_GL_VERSION_OVERRIDE=3.3
+ * 
  *     A principal diferença entre este programa e o exemplo acima é que neste
  * os vertex e fragment shaders são carregados a partir de arquivos externos, 
  * ao inves de estarem hard coded no código fonte. 
