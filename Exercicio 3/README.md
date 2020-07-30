@@ -1,8 +1,8 @@
-# Exercicio 3 - Introdução a Computação Grafica (ICG)
+# **Exercicio 3 - Introdução a Computação Grafica (ICG)**
 
 ## Respositorio dos Exercícios de ICG
 
-### Centro de Informatica - Universidade Federal da Paraiba
+### **Centro de Informatica - Universidade Federal da Paraiba**
 
  Disciplina: Introdução a Computação Grafica
 
@@ -10,16 +10,14 @@
 
  Data de Criacao: 24/06/2020
 
-### Introdução
+### **Introdução**
 
- Na computação Gráfica um dos pontos mais importantes 
-
-### Desenvolvimento
+### **Desenvolvimento**
 
  
-### Conclusão
+### **Conclusão**
 
  
 
-### Referencias
+### **Referencias**
 
