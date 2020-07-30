@@ -10,16 +10,16 @@
 
  Data de Criacao: 24/06/2020
 
- ### Introdução
+### Introdução
+
+ Na computação Gráfica um dos pontos mais importantes 
+
+### Desenvolvimento
+
+ 
+### Conclusão
 
  
 
- ### Desenvolvimento
-
- 
- ### Conclusão
-
- 
-
- ### Referencias
+### Referencias
 
