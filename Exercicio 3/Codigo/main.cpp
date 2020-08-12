@@ -69,16 +69,19 @@ void Display(void) {
     float model_array[16] = {1.0f, 0.0f, 0.0f, 0.0f, 
                              0.0f, 1.0f, 0.0f, 0.0f, 
                              0.0f, 0.0f, 1.0f, 0.0f, 
-                             0.0f, 0.0f, 0.0f, 1.0f};
+                             0.0f, 0.0f, -0.5f, 1.0f};
     glm::mat4 model_mat = glm::make_mat4(model_array);
 
     // Matriz View ////////////////////////////////////////////////////////////
     // You will have to change the contents of this matrix for the exercises
-    float view_array[16] = {0.93f,      0.13f,      -0.35f,     0.0f, 
-                            0.0f,       0.94f,      0.35f,      -0.0f, 
-                            0.37f,      -0.32f,     0.87f,      -0.0f, 
-                            0.1f,       -0.1f,      -0.25f,     1.0f};
-
+    /*float view_array[16] = {0.93f,      0.13f,      -0.35f,     0.0f, 
+                            0.0f,       0.94f,      0.35f,      0.0f, 
+                            0.37f,      -0.32f,     0.87f,      0.0f, 
+                            0.1f,       -0.1f,      -0.25f,     1.0f};*/
+    float view_array[16] = {1.0f,       0.0f,      0.0f,     0.0f, 
+                            0.0f,       1.0f,      0.0f,     0.0f, 
+                            0.0f,       0.0f,      1.0f,     0.0f, 
+                            0.0f,       0.0f,      0.0f,     1.0f};
     glm::mat4 view_mat = glm::make_mat4(view_array);
 
     // Matriz Projection //////////////////////////////////////////////////////
@@ -86,7 +89,7 @@ void Display(void) {
     float proj_array[16] = {1.0f, 0.0f, 0.0f, 0.0f, 
                             0.0f, 1.0f, 0.0f, 0.0f, 
                             0.0f, 0.0f, 1.0f, -2.0f, 
-                            0.0f, 0.0f, 0.5f, 1.0f};
+                            0.0f, 0.0f, 0.5f, 0.0f};
 
     glm::mat4 proj_mat = glm::make_mat4(proj_array);
 
